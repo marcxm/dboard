@@ -1,0 +1,11 @@
+services:
+  dboard:
+    image: marcxm/dboard:1.0
+    build: . 
+    hostname: dboard
+    container_name: dboard 
+    ports:
+        - 80:80
+    volumes:
+        - ./config.yml:/usr/local/apache2/htdocs/config.yml
+    restart: always
