@@ -99,12 +99,6 @@ sections:
         icon: https://cdn.jsdelivr.net/gh/selfhst/icons@main/png/miniflux.png
         url: https://miniflux.app/
         description: Miniflux
-        
-
-It was created because none of the available homepages / dashboard made sense to me. 
-Most were overbloated, overcomplicated, or just too hard to use.
-```
-
----
+```        
 
 
