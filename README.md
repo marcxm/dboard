@@ -2,6 +2,14 @@
 Dead simple, performant homepage / dashboard solution with automatic dark mode. 
 It also auto-scales to the size of the screen, aligning everything properly.
 
+---
+
+![obraz](https://github.com/user-attachments/assets/2a9ca513-dceb-485c-9660-5b0c1df0dbc2)
+
+![obraz](https://github.com/user-attachments/assets/afec34ff-ce71-4100-8ae2-2b09d07d048c)
+
+---
+
 Configuration is easy and intuitive, via config.yml:
 
 ```yaml
@@ -99,6 +107,4 @@ Most were overbloated, overcomplicated, or just too hard to use.
 
 ---
 
-![obraz](https://github.com/user-attachments/assets/2a9ca513-dceb-485c-9660-5b0c1df0dbc2)
 
-![obraz](https://github.com/user-attachments/assets/afec34ff-ce71-4100-8ae2-2b09d07d048c)
