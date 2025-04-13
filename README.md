@@ -2,6 +2,8 @@
 Dead simple, performant homepage / dashboard solution with automatic dark mode. 
 It also auto-scales to the size of the screen, aligning everything properly.
 
+https://github.com/marcxm/dboard
+
 ---
 
 ```bash
