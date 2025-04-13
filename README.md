@@ -4,17 +4,17 @@ It also auto-scales to the size of the screen, aligning everything properly.
 
 ---
 
+```bash
+docker run -p 80:80 marcxms/dboard
+```
+
+---
+
 ![obraz](https://github.com/user-attachments/assets/2a9ca513-dceb-485c-9660-5b0c1df0dbc2)
 
 ![obraz](https://github.com/user-attachments/assets/afec34ff-ce71-4100-8ae2-2b09d07d048c)
 
 ![obraz](https://github.com/user-attachments/assets/46640767-b037-4ae7-a85f-09d361f2c0aa)
-
----
-
-```bash
-docker run -p 80:80 marcxms/dboard
-```
 
 ---
 
