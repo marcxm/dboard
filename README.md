@@ -12,6 +12,12 @@ It also auto-scales to the size of the screen, aligning everything properly.
 
 ---
 
+```bash
+docker run -p 80:80 marcxms/dboard
+```
+
+---
+
 Configuration is easy and intuitive, via config.yml:
 
 ```yaml
