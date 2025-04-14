@@ -6,8 +6,29 @@ https://github.com/marcxm/dboard
 
 ---
 
+docker run:
+
 ```bash
 docker run -p 80:80 --name dboard marcxms/dboard
+```
+
+---
+
+docker-compose up -d:
+
+```bash
+
+services:
+  dboard:
+    image: marcxms/dboard 
+    hostname: dboard
+    container_name: dboard 
+    ports:
+        - 80:80
+    volumes:
+        - ./config.yml:/usr/local/apache2/htdocs/config.yml
+    restart: always
+
 ```
 
 ---
