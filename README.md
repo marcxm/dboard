@@ -7,7 +7,7 @@ https://github.com/marcxm/dboard
 ---
 
 ```bash
-docker run -p 80:80 marcxms/dboard
+docker run -p 80:80 --name dboard marcxms/dboard
 ```
 
 ---
