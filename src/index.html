@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>XMS Research Lab</title>
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js" as="script" crossorigin="anonymous" />
   <style>
@@ -84,53 +84,62 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
-      try {
-        const response = await fetch('config.yml');
-        const config = jsyaml.load(await response.text());
-        const container = document.getElementById('mainContainer');
-        const cardWidth = 280;
+      const container = document.getElementById('mainContainer');
+      
+      async function fetchConfigAndUpdate() {
+        try {
+          const response = await fetch('config.yml', { cache: 'no-store' }); // Avoid caching
+          const config = jsyaml.load(await response.text());
+          container.innerHTML = ''; // Clear container
 
-        function createCard(app) {
-          if (!app.name || !app.url || !app.icon) return null;
-          const card = document.createElement('a');
-          card.href = app.url;
-          card.className = 'app-card';
-          card.innerHTML = `
-            <div class="app-icon"><img src="${app.icon}" alt="${app.name}" /></div>
-            <div class="app-info">
-              <div class="app-name">${app.name}</div>
-              <div class="app-description">${app.description || ''}</div>
-            </div>`;
-          return card;
-        }
-
-        function createSection(name, apps) {
-          const section = document.createElement('section');
-          section.className = 'section';
-
-          if (name) {
-            section.innerHTML = `<div class="section-header"><div class="section-title">${name}</div></div>`;
+          function createCard(app) {
+            if (!app.name || !app.url || !app.icon) return null;
+            const card = document.createElement('a');
+            card.href = app.url;
+            card.className = 'app-card';
+            card.innerHTML = `
+              <div class="app-icon"><img src="${app.icon}" alt="${app.name}" /></div>
+              <div class="app-info">
+                <div class="app-name">${app.name}</div>
+                <div class="app-description">${app.description || ''}</div>
+              </div>`;
+            return card;
           }
 
-          const grid = document.createElement('div');
-          grid.className = 'app-grid';
-          apps.forEach(app => {
-            const card = createCard(app);
-            if (card) grid.appendChild(card);
-          });
+          function createSection(name, apps) {
+            const section = document.createElement('section');
+            section.className = 'section';
 
-          section.appendChild(grid);
-          container.appendChild(section);
+            if (name) {
+              section.innerHTML = `<div class="section-header"><div class="section-title">${name}</div></div>`;
+            }
+
+            const grid = document.createElement('div');
+            grid.className = 'app-grid';
+            apps.forEach(app => {
+              const card = createCard(app);
+              if (card) grid.appendChild(card);
+            });
+
+            section.appendChild(grid);
+            container.appendChild(section);
+          }
+
+          if (config.apps) createSection(null, config.apps);
+          if (config.sections) config.sections.forEach(s => createSection(s.name, s.apps));
+
+          if (!container.hasChildNodes()) container.innerHTML = '<p>No apps or sections found in config.</p>';
+        } catch (err) {
+          console.error(err);
+          container.innerHTML = `<p>Error loading configuration: ${err.message}</p>`;
         }
-
-        if (config.apps) createSection(null, config.apps);
-        if (config.sections) config.sections.forEach(s => createSection(s.name, s.apps));
-
-        if (!container.hasChildNodes()) container.innerHTML = '<p>No apps or sections found in config.</p>';
-      } catch (err) {
-        console.error(err);
-        document.getElementById('mainContainer').innerHTML = `<p>Error loading configuration: ${err.message}</p>`;
       }
+
+      // Initial fetch
+      await fetchConfigAndUpdate();
+
+      // Poll for updates every 2 seconds
+      setInterval(fetchConfigAndUpdate, 2000);
     });
   </script>
 </body>
