@@ -1,5 +1,5 @@
 # dboard
-Dead simple, performant homepage / dashboard solution with automatic dark mode. 
+Dead simple, performant homepage / dashboard solution with automatic dark mode and automatic page reload on config change. 
 It also auto-scales to the size of the screen, aligning everything properly.
 
 https://github.com/marcxm/dboard
